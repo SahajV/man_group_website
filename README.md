@@ -1,1 +1,2 @@
-# man_group_website
+This is the official website for Man Group LLC
+
