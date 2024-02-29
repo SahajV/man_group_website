@@ -1,137 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animal Welfare Society</title>
+    <title>Marketing Analytics Group</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
         }
-
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
         header {
-            background-image: url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center 20%;
+            background: url('analytics_bg.webp') no-repeat center center/cover;
             color: #fff;
-            padding-top: 300px;
+            padding-top: 30px;
+            padding-bottom: 15px;
             text-align: center;
         }
-
         header h1 {
             margin: 0;
-            padding: 0;
+            font-size: 2.5rem;
         }
-
-        nav {
-            background-color: #333;
-            overflow: hidden;
+        header p {
+            font-size: 1.2rem;
         }
-
-        nav a {
-            float: left;
-            display: block;
-            color: #fff;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
+        .intro, .services, .testimonials {
+            margin-top: 20px;
         }
-
-        nav a:hover {
-            background-color: #ddd;
-            color: #333;
+        .intro h2, .services h2, .testimonials h2 {
+            color: #007bff;
         }
-
-        section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #fff;
-            margin: 10px;
+        .intro p, .services p, .testimonials p {
+            margin-bottom: 10px;
         }
-
-        section img {
-            width: 100%;
+        .service-image, .testimonial-image {
+            max-width: 100%;
             height: auto;
+            border-radius: 8px;
+        }
+        .cta {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .cta a {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .cta a:hover {
+            background: #0056b3;
+        }
+        .testimonial {
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .testimonial p {
+            font-style: italic;
+        }
+        .testimonial cite {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: bold;
+        }
+        .welcome-splash {
+            background:  url('analytics_bg.webp') no-repeat center center/cover; /* Replace with actual brand color */
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .welcome-splash h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+        .welcome-splash p {
+            font-size: 1.5rem;
+            margin-bottom: 1.5em;
+        }
+        .welcome-splash a {
+            display: inline-block;
+            background: white;
+            color: navy; /* Replace with actual brand color */
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+        .welcome-splash a:hover {
+            background-color: #ddd; /* Light grey for hover effect */
         }
 
-        footer {
-            background-color: #333;
-            color: #fff;
+        .footer {
+            background-color: #2a2a2a; /* Dark background for the footer */
+            color: #f0f0f0; /* Light color for text for contrast */
+            font-family: Arial, sans-serif;
+            padding: 20px 0;
             text-align: center;
-            padding: 5px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        }
+        .footer ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .footer li {
+            display: inline;
+            margin: 0 10px;
+        }
+        .footer a {
+            color: #f0f0f0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #007bff; /* Highlight color when hovered */
+        }
+        .footer .copy {
+            margin-top: 15px;
+            font-size: 0.8rem;
+        }
+
+
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #fff; /* Dark background for navbar */
+            overflow: hidden;
+            position: fixed; /* Fix position to the top of the screen */
+            top: 0; /* Align to the top */
+            width: 100%; /* Navbar spans the full width of the viewport */
+            z-index: 1000; /* Ensure the navbar stays on top of other content */
+            border-bottom: solid 2px #007bff; /* Accent border color */
+        }
+
+        .navbar a {
+            float: left; /* Align links to the left side */
+            display: block;
+            color: navy; /* Light text color for links */
+            text-align: center;
+            padding: 16px 16px; /* Vertical and horizontal padding */
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd; /* Light background on hover */
+            color: black; /* Text color change on hover */
+        }
+
+        /* Logo styles */
+        .navbar .logo {
+            float: left; /* Align logo to the left side */
+            height: 60px; /* Height of the navbar */
+            padding: 0 0; /* Padding around the logo */
+        }
+
+        .navbar .logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        /* Right-aligned section for navbar links */
+        .navbar .navbar-right {
+            float: right; /* Align the links to the right */
+        }
+
+        /* Placeholder for the rest of the content */
+        .main-content {
+            padding-top: 60px; /* Add padding to top of content to account for fixed navbar height */
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .intro-text, .services-text {
+            flex: 0 0 75%; /* Text takes up 75% */
+            padding-right: 20px; /* Add padding for spacing between text and image */
+        }
+
+        .intro-image, .services-image {
+            flex: 0 0 25%; /* Image takes up 25% */
+            text-align: center; /* Center the image if smaller than the space */
+        }
+
+        .services {
+            flex-direction: row-reverse; /* Reverse the order for the services section */
+        }
+
+        .services-text {
+            padding-right: 0;
+            padding-left: 20px; /* Add padding for spacing between text and image */
+        }
+
+        /* Responsive layout adjustments */
+        @media (max-width: 768px) {
+            .container {
+                flex-wrap: wrap;
+                flex-direction: column;
+            }
+
+            .intro-text, .services-text,
+            .intro-image, .services-image {
+                flex: 0 0 100%;
+            }
+
+            .intro-text, .services-text {
+                padding-right: 0;
+            }
+        }
+        
+        .container-two {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start; /* Aligns items to the start of the container */
+            gap: 20px; /* Optional: adds space between text and image */
+        }
+
+        .intro-text {
+            flex: 1 1 75%; /* Allows text to grow and shrink but base at 75% width */
+            max-width: 75%; /* Ensures the max width is 75% */
+            min-width: 300px; /* Ensures text does not get too squished */
+        }
+
+        .intro-image {
+            flex: 1 1 25%; /* Allows image to grow and shrink but base at 25% width */
+            max-width: 25%; /* Ensures the max width is 25% */
+            min-width: 150px; /* Ensures image does not get too squished */
+            text-align: center; /* Centers the image within its flex item */
+        }
+
+        .intro-image img {
+            width: 100%; /* Image will fill the container width */
+            height: auto; /* Keep the aspect ratio */
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .container-two {
+                flex-direction: column; /* Stack items vertically */
+            }
+
+            .intro-text, .services-text, .intro-image {
+                flex: 1 1 100%; /* Each takes full width */
+                max-width: 100%; /* Ensures the max width is 100% */
+                text-align: center; /* Center the content */
+            }
+
+            .intro-image img {
+                width: 80%; /* Smaller image on mobile for better aesthetics */
+                margin-top: 20px; /* Adds space between text and image */
+            }
         }
     </style>
+
+    <!-- Calendly badge widget begin -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/mangroupllc/initialsession?hide_landing_page_details=1&hide_gdpr_banner=1', text: 'Schedule Intro Session - $15', color: '#0069ff', textColor: '#ffffff', branding: false }); }</script>
+    <!-- Calendly badge widget end -->
 </head>
-
 <body>
-
-    <header>
-        <h1>Animal Welfare Society</h1>
-    </header>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="contact.html">Virtual Adoption</a>
-    </nav>
-
-    <section>
-        <div>
-            <h2>About Us</h2>
-            <p>
-                <strong>Compassion in Action: Our Journey</strong><br>
-                Discover our story at Animal Welfare Society, a haven for neglected and abandoned animals. Since 2023,
-                our dedicated team has been rescuing, rehabilitating, and providing a loving temporary home for these
-                animals. We believe every creature deserves a chance at happiness and work tirelessly to make this a
-                reality. Join us in our mission to create a kinder world for our furry friends.
-            </p>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="MAN Group Logo">
         </div>
-        <img src="https://images.unsplash.com/photo-1553688738-a278b9f063e0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Team at Animal Shelter">
-    </section>
-
-    <section>
-        <div>
-            <h2>Virtual Adoption Program</h2>
-            <p>
-                <strong>Find Your Forever Friend from Home</strong><br>
-                Embrace the joy of pet parenthood through our Virtual Adoption Program. Browse our online gallery to
-                meet our adorable residents waiting for a loving home. Our virtual adoption process is seamless,
-                ensuring you find the perfect match. Hear heartwarming stories of families united with their pets
-                through our program and become part of this beautiful journey.
-            </p>
+        <div class="navbar-right">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#joinus">Join Us</a>
         </div>
-        <img src="https://images.unsplash.com/photo-1602205413206-abfd9bfe77fc?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Happy Pets with Families">
-    </section>
+    </div>
 
-    <section>
-        <div>
-            <h2>Awareness and Education</h2>
-            <p>
-                <strong>Empower Through Education: Our Awareness Campaigns</strong><br>
-                Dive into our Awareness and Education programs designed to foster a community of informed and
-                responsible pet owners. From understanding pet needs to recognizing the importance of spaying/neutering,
-                we offer valuable resources for all. Participate in our workshops, events, and volunteer programs to
-                spread the message of animal welfare far and wide.
-            </p>
+    <div class="main-content">
+        <div class="welcome-splash" id="home">
+            <h1>Welcome to MAN Group</h1>
+            <p>Your partner in restaurant analytics and marketing.</p>
+            <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+        <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mangroupllc/initialsession?hide_landing_page_details=1'});return false;">Schedule a 15-Minute Strategy Session - $15</a>
         </div>
-        <img src="https://images.unsplash.com/photo-1559223607-a43c990c692c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Educational Workshop">
-    </section>
 
-    <footer>
-        Animal Welfare Society is a holding of Man Group LLC.
-    </footer>
+        <div class="image-container container intro">
+            <div class="intro-text">
+                <h2>Welcome to the Marketing Analytics Group</h2>
+                <p>The Marketing Analytics Group (MAN Group) is at the forefront of transforming the restaurant industry through advanced analytics and bespoke marketing solutions. Our mission is to empower restaurants of all sizes to achieve unparalleled growth and customer engagement. In an era where data is king, understanding customer behavior, preferences, and trends is not just an advantage—it's a necessity. We specialize in turning data into actionable insights, crafting customized marketing strategies that drive results and set our clients apart from the competition.</p>
+                <p>With a team of seasoned experts in data science, marketing strategy, and industry analytics, we're equipped to tackle challenges unique to the restaurant sector. Whether you're looking to increase foot traffic, enhance online presence, or optimize your menu for profitability, our tailored approach ensures that your restaurant isn't just a choice for customers, but a destination.</p>
+            </div>
+            <div class="intro-image">
+                <img src="assets/marketing_analytics.jpeg" alt="Marketing Analytics">
+            </div>
+        </div>
+        
+        <div class="image-container container services">
+            <div class="services-text" id="services">
+                <h2>Our Services</h2>
+                <p>Our comprehensive suite of services is designed to cover every aspect of your restaurant's marketing and analytics needs:</p>
+                <ul>
+                    <li>Customer Segmentation & Behavior Analysis</li>
+                    <li>Sales Trend Forecasting</li>
+                    <li>Online Reputation Management</li>
+                    <li>Digital Marketing & Social Media Strategy</li>
+                    <li>Menu Optimization & Pricing Strategy</li>
+                    <li>Loyalty Program Development & Analysis</li>
+                </ul>
+                <p>Each service is backed by rigorous analysis and a deep understanding of the culinary landscape, ensuring that our strategies not only resonate with your target audience but also contribute to sustainable growth and brand loyalty.</p>
+            </div>
+            <div class="intro-image">
+                <img src="assets/img2.png" alt="Services">
+            </div>
+        </div>
 
+        <div class="image-container container intro">
+            <div class="intro-text" id="about">
+                <h2>About Us</h2>
+                <p>The MAN Group's odyssey began in 2022 in the heart of Virginia's bustling business district. With a singular vision to revolutionize the restaurant industry through the power of analytics and data-driven decision-making, our founders – a group of like-minded data scientists, marketing gurus, and culinary aficionados – laid the foundation of what would become a beacon of innovation in the restaurant consultancy arena.</p>
+                <p>From our humble beginnings in a small, sunlit office where ideas flew as rapidly as the coding keystrokes, the MAN Group has grown into a bastion of strategic prowess, boasting a clientele that spans the breadth of the gastronomy landscape, from quaint bistros to international restaurant chains.</p>
+            </div>
+            <div class="intro-image">
+                <img src="assets/nova.jpeg">
+            </div>
+        </div>
+
+        <div class="image-container container services">
+            <div class="services-text" id="mission">
+                <h2>Our Mission and Values</h2>
+                <p>At the MAN Group, we are steadfast in our mission to empower restaurants to flourish in an era where data translates into gastronomic delight. We believe that behind every succulent dish served is a trove of data waiting to be deciphered and harnessed. Our mission extends beyond mere analytics – it's about crafting a narrative that resonates with the palate of every diner, ensuring that every marketing dollar translates into a return on experience.</p>
+                <p>Our ethos is woven into the fabric of our operations. Integrity, innovation, and insight stand as the pillars of the MAN Group. We approach every challenge with an integrity that instills trust in our partners. Innovation pulses through our veins, driving us to continually push the boundaries of what's possible in restaurant analytics. Insight is the lens through which we transform data points into growth strategies.</p>
+            </div>
+            <div class="intro-image">
+                <img src="assets/restaurant_consulting.jpeg">
+            </div>
+        </div>
+        
+        <div class="container testimonials">
+            <h2>Client Testimonials</h2>
+            <div class="testimonial" id="testimonials">
+                <p>"Since partnering with the Marketing Analytics Group, our restaurant has seen a significant increase in customer engagement and revenue. Their insights and strategies have been game-changers for our business."</p>
+                <cite>– Jamie L., Bistro Owner</cite>
+            </div>
+            <div class="testimonial">
+                <p>"The team at MAN Group truly understands the challenges of the restaurant industry. Their data-driven approach has helped us optimize our operations and marketing efforts, resulting in higher customer satisfaction and repeat business."</p>
+                <cite>– Alex R., Cafe Manager</cite>
+            </div>
+        </div>
+        
+        <div class="image-container container intro">
+            <div class="intro-text" id="joinus">
+                <h2>Join Us</h2>
+                <p>As we continue to write our story, we invite you to become a part of our journey. Whether you're seeking to redefine your restaurant's marketing strategy or you're a professional eager to make your mark in the industry, the MAN Group offers a partnership and a career path that's both rewarding and exhilarating. Join us, and let's savor the taste of success together.</p>
+                <p>We are actively hiring both intern and full-time software developers, statisticians, consultants, and industry experts. We post all of our new jobs on <a href="https://www.linkedin.com/company/man-group-llc/">LinkedIn</a>, be sure to check us out on there to join our mission.</p>
+            </div>
+            <div class="intro-image">
+                <img src="assets/hiring.jpeg">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#mission">Mission</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#joinus">Join Us</a></li>
+        </ul>
+        <div class="copy">
+            &copy; 2023 MAN Group. All rights reserved.
+        </div>
+    </div>
 </body>
-
 </html>
